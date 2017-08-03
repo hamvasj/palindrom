@@ -6,27 +6,23 @@
 using namespace std;
 
 bool Palindrom(const string text);
-bool Palindrom2(const string text);
+bool Palindrom2(QString text);
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    string text;
-    bool eredmeny;
-    QTextStream qtin(stdin);
+    QString text;
+    QTextStream s(stdin);
 
     while (true)
     {
-        cout<<"Adj meg egy szót vagy mondatot, és eldöntöm, palindrom-e?"<<endl;
-        text="";
-        cin>>text;
+        qDebug("Adj meg egy szót vagy mondatot, és eldöntöm, palindrom-e?");
+        text=s.readLine();
 
-        if (Palindrom2(text)) cout<<"Ez a szó palindrom."<<endl;
-        else cout<<"Nem palindrom."<<endl;
-        cout<<endl;
-    }
-
+        if (Palindrom2(text)) qDebug("Ez a szó palindrom.");
+        else qDebug("Nem palindrom.");
+     }
     return a.exec();
 }
 
@@ -50,11 +46,13 @@ bool Palindrom(const string text)
     return w1==w3;
 }
 
-bool Palindrom2(const string text)
+bool Palindrom2(QString text)
 {
     int p1=0;
+    text.simplified();
+    text.replace(" ","");
     int p2=text.length()-1;
-    bool palindrom=false;
+    bool palindrom=true;
 
     while (!(p1>p2))
     {
@@ -62,9 +60,12 @@ bool Palindrom2(const string text)
         {
             p1+=1;
             p2-=1;
-            palindrom=true;
         }
-        else break;
+        else
+        {
+            palindrom=false;
+            break;
+        }
     }
 
     return palindrom;
