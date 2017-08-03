@@ -6,6 +6,7 @@
 using namespace std;
 
 bool Palindrom(const string text);
+bool Palindrom2(const string text);
 
 int main(int argc, char *argv[])
 {
@@ -21,7 +22,7 @@ int main(int argc, char *argv[])
         text="";
         cin>>text;
 
-        if (Palindrom(text)) cout<<"Ez a szó palindrom."<<endl;
+        if (Palindrom2(text)) cout<<"Ez a szó palindrom."<<endl;
         else cout<<"Nem palindrom."<<endl;
         cout<<endl;
     }
@@ -47,5 +48,24 @@ bool Palindrom(const string text)
     }
 
     return w1==w3;
+}
 
+bool Palindrom2(const string text)
+{
+    int p1=0;
+    int p2=text.length()-1;
+    bool palindrom=false;
+
+    while (!(p1>p2))
+    {
+        if (text.at(p1)==text.at(p2))
+        {
+            p1+=1;
+            p2-=1;
+            palindrom=true;
+        }
+        else break;
+    }
+
+    return palindrom;
 }
