@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
         qDebug("Adj meg egy szót vagy mondatot, és eldöntöm, palindrom-e?");
         text=s.readLine();
 
-        if (Palindrom2(text)) qDebug("Ez a szó palindrom.");
+        if (Palindrom2(text)) qDebug("Ez a szöveg palindrom.");
         else qDebug("Nem palindrom.");
      }
     return a.exec();
